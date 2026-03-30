@@ -12,7 +12,7 @@ Open-source CLI
 ## Install
 
 ```bash
-pip install git+https://github.com/muhtalhakhan/Ravah-App-OpenSouce.git
+pip install git+https://github.com/muhtalhakhan/Ravah-App-OpenSource.git
 ```
 
 That's it. No database, no config files, no `cd` into anything.
@@ -96,9 +96,9 @@ ravah reset     # clear saved profile and last session — start completely fres
 
 Two files to edit:
 
-**[ravah/cli.py](https://github.com/muhtalhakhan/Ravah-App-OpenSouce/blob/main/ravah/cli.py)** — every command is a plain `@app.command()` function. Add yours the same way. The onboarding questions are all inside `generate()`.
+**[ravah/cli.py](https://github.com/muhtalhakhan/Ravah-App-OpenSource/blob/main/ravah/cli.py)** — every command is a plain `@app.command()` function. Add yours the same way. The onboarding questions are all inside `generate()`.
 
-**[ravah/gemini_service.py](https://github.com/muhtalhakhan/Ravah-App-OpenSouce/blob/main/ravah/gemini_service.py)** — the system prompt, ClearV definition, and platform specs.
+**[ravah/gemini_service.py](https://github.com/muhtalhakhan/Ravah-App-OpenSource/blob/main/ravah/gemini_service.py)** — the system prompt, ClearV definition, and platform specs.
 
 | What to change | Where |
 | -------------- | ----- |
@@ -129,7 +129,7 @@ Clone and run from source with editable install — changes reflect immediately:
 
 ```bash
 git clone https://github.com/muhtalhakhan/Ravah-App-OpenSouce.git
-cd Ravah-App-OpenSouce
+cd Ravah-App-OpenSource
 pip install -e .
 ravah
 ```
