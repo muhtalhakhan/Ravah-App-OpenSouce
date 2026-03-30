@@ -1,0 +1,198 @@
+---
+import { SmoothCursor } from "@/components/ui/smooth-cursor";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} - Ravah</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="min-h-screen bg-[var(--bg)] text-[var(--ink)] cursor-none">
+    <div class="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(1000px_circle_at_15%_-10%,rgba(15,95,103,0.08),transparent_40%),radial-gradient(760px_circle_at_90%_0%,rgba(57,177,161,0.08),transparent_35%),linear-gradient(180deg,#f6f8f8,#eef3f3)]"></div>
+
+    <SmoothCursor client:load />
+
+    <nav class="sticky top-0 z-20 border-b border-[var(--line)] bg-[color:rgba(248,251,251,0.76)] backdrop-blur-xl">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center space-x-8">
+            <a href="/" class="brand-mark flex items-center text-xl font-semibold tracking-tight text-[var(--brand)]">
+              Ravah
+            </a>
+            <div class="hidden sm:flex sm:space-x-4 sm:items-center">
+              <a href="/" class="rounded-md px-3 py-2 text-sm font-semibold text-[var(--ink-muted)] transition hover:bg-[var(--card)] hover:text-[var(--ink)]">
+                Home
+              </a>
+              <a href="/onboarding" class="rounded-md px-3 py-2 text-sm font-semibold text-[var(--ink-muted)] transition hover:bg-[var(--card)] hover:text-[var(--ink)]">
+                Onboarding
+              </a>
+              <a href="/agent" class="rounded-md px-3 py-2 text-sm font-semibold text-[var(--ink-muted)] transition hover:bg-[var(--card)] hover:text-[var(--ink)]">
+                Content Studio
+              </a>
+              <a href="/waitlist" class="rounded-md px-3 py-2 text-sm font-semibold text-[var(--ink-muted)] transition hover:bg-[var(--card)] hover:text-[var(--ink)]">
+                Waitlist
+              </a>
+            </div>
+          </div>
+          <div class="flex items-center space-x-4">
+            <a href="/login" class="rounded-md px-3 py-2 text-sm font-semibold text-[var(--ink-muted)] transition hover:bg-[var(--card)] hover:text-[var(--ink)]" id="login-link">
+              Login
+            </a>
+            <a href="/signup" class="rounded-full border border-[var(--brand)] bg-[var(--brand)] px-4 py-2 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[var(--brand-dark)]" id="signup-link">
+              Sign Up
+            </a>
+            <button id="logout-btn" class="hidden rounded-md px-3 py-2 text-sm font-semibold text-[var(--ink-muted)] transition hover:bg-[var(--card)] hover:text-[var(--ink)]">
+              Logout
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <slot />
+    </main>
+
+    <footer class="mt-10 border-t border-[var(--line)] bg-[rgba(245,249,249,0.75)]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid gap-6 md:grid-cols-3">
+          <div>
+            <p class="text-lg font-black text-[var(--brand)]">Ravah</p>
+            <p class="mt-2 text-sm text-[var(--ink-muted)]">Founder-first content workflow. Idea to weekly narrative system.</p>
+          </div>
+          <div class="text-sm">
+            <p class="font-bold mb-2">Product</p>
+            <div class="space-y-1 text-[var(--ink-muted)]">
+              <a href="/onboarding" class="block hover:text-[var(--ink)]">Onboarding</a>
+              <a href="/agent" class="block hover:text-[var(--ink)]">Content Studio</a>
+              <a href="/waitlist" class="block hover:text-[var(--ink)]">Waitlist</a>
+            </div>
+          </div>
+          <div class="text-sm">
+            <p class="font-bold mb-2">Status</p>
+            <p class="text-[var(--ink-muted)]">Phase 3 complete. Weekly planning flow active.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <style is:global>
+      :root {
+        --bg: #eef3f3;
+        --card: rgba(255, 255, 255, 0.7);
+        --ink: #132326;
+        --ink-muted: #557176;
+        --line: rgba(89, 128, 133, 0.24);
+        --brand: #0f6f73;
+        --brand-dark: #0a5457;
+      }
+
+      body {
+        font-family:
+          -apple-system,
+          BlinkMacSystemFont,
+          "SF Pro Text",
+          "SF Pro Display",
+          "Segoe UI",
+          Roboto,
+          Helvetica,
+          Arial,
+          sans-serif;
+        font-feature-settings: "cv11", "ss01";
+        cursor: none;
+      }
+
+      input, textarea, select { cursor: text !important; }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: inherit;
+        letter-spacing: -0.03em;
+      }
+
+      .panel {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        box-shadow:
+          0 12px 30px rgba(32, 51, 102, 0.08),
+          inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(8px);
+      }
+
+      .brand-mark {
+        position: relative;
+      }
+
+      .brand-mark::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, var(--brand), rgba(31, 92, 255, 0.05));
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(10px);
+        animation: reveal 0.5s ease forwards;
+      }
+
+      .delay-1 { animation-delay: 80ms; }
+      .delay-2 { animation-delay: 160ms; }
+      .delay-3 { animation-delay: 240ms; }
+
+      @keyframes reveal {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+
+    <script>
+      // Check authentication status and update nav
+      function updateNav() {
+        const token = localStorage.getItem('auth_token');
+        const loginLink = document.getElementById('login-link');
+        const signupLink = document.getElementById('signup-link');
+        const logoutBtn = document.getElementById('logout-btn');
+
+        if (token) {
+          loginLink?.classList.add('hidden');
+          signupLink?.classList.add('hidden');
+          logoutBtn?.classList.remove('hidden');
+        } else {
+          loginLink?.classList.remove('hidden');
+          signupLink?.classList.remove('hidden');
+          logoutBtn?.classList.add('hidden');
+        }
+      }
+
+      // Logout handler
+      document.getElementById('logout-btn')?.addEventListener('click', () => {
+        localStorage.removeItem('auth_token');
+        window.location.href = '/login';
+      });
+
+      // Update nav on page load
+      updateNav();
+
+      // Listen for storage changes (login/logout in other tabs)
+      window.addEventListener('storage', updateNav);
+    </script>
+  </body>
+</html>

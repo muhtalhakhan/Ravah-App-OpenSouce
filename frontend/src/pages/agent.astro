@@ -1,0 +1,187 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Content Studio">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-4xl font-bold mb-2 reveal">Content Studio</h1>
+    <p class="text-[var(--ink-muted)] mb-8 reveal delay-1">
+      Generate founder-focused content powered by <span id="framework-name" class="font-medium text-blue-600">...</span>
+    </p>
+
+    <div id="auth-warning" class="hidden bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded mb-4">
+      Please <a href="/login" class="underline font-medium">login</a> to use content generation.
+    </div>
+
+    <div class="panel p-6 mb-6 reveal delay-1">
+      <div class="flex items-center space-x-3 mb-4">
+        <div class="flex-shrink-0">
+          <div class="w-3 h-3 rounded-full" id="status-indicator"></div>
+        </div>
+        <div>
+          <p class="text-sm font-medium" id="status-text">Checking agent status...</p>
+          <p class="text-xs text-[var(--ink-muted)]" id="status-details"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel p-6 mb-6 reveal delay-2">
+      <h2 class="text-xl font-bold mb-4">Generate Content</h2>
+
+      <form id="agent-form" class="space-y-4">
+        <div>
+          <label for="query" class="block text-sm font-medium text-[var(--ink-muted)] mb-1">
+            Content Request
+          </label>
+          <textarea
+            id="query"
+            name="query"
+            rows="4"
+            required
+            placeholder="Describe what you want to generate (for example: 7-day LinkedIn plan for pre-launch B2B tool)..."
+            class="w-full rounded-md border border-[var(--line)] bg-white px-3 py-2 focus:border-[var(--brand)] focus:outline-none"
+          ></textarea>
+        </div>
+
+        <div id="form-error" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded"></div>
+
+        <button
+          type="submit"
+          id="submit-btn"
+          class="w-full rounded-md bg-[var(--brand)] px-4 py-2 text-white transition hover:-translate-y-0.5 hover:bg-[var(--brand-dark)] focus:outline-none disabled:cursor-not-allowed disabled:bg-[#9b8e81]"
+        >
+          Generate
+        </button>
+      </form>
+    </div>
+
+    <div id="response-container" class="panel hidden p-6">
+      <h2 class="text-xl font-bold mb-4">Generated Output</h2>
+
+      <div class="rounded-lg border border-[var(--line)] bg-white p-4 mb-4">
+        <p id="response-text" class="text-[var(--ink)] whitespace-pre-wrap"></p>
+      </div>
+
+      <div class="border-t pt-4">
+        <h3 class="text-sm font-medium text-[var(--ink-muted)] mb-2">Metadata</h3>
+        <div class="text-sm text-[var(--ink-muted)] space-y-1">
+          <p><span class="font-medium">Framework:</span> <span id="response-framework"></span></p>
+          <p><span class="font-medium">Mock Mode:</span> <span id="response-mock"></span></p>
+          <div id="response-metadata"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel mt-8 p-6 reveal delay-3">
+      <h3 class="text-lg font-bold mb-2">Example Prompts</h3>
+      <ul class="space-y-2 text-sm text-[var(--ink-muted)]">
+        <li class="cursor-pointer transition hover:text-[var(--brand)]" onclick="setQuery('Create a 7-day content plan for a founder launching a developer tool. Include daily hooks and CTAs.')">
+          - Create a 7-day content plan with hooks and CTAs.
+        </li>
+        <li class="cursor-pointer transition hover:text-[var(--brand)]" onclick="setQuery('Write three LinkedIn post variants for a product launch update in a practical and transparent tone.')">
+          - Write LinkedIn post variants for a launch update.
+        </li>
+        <li class="cursor-pointer transition hover:text-[var(--brand)]" onclick="setQuery('Generate platform-specific versions for LinkedIn, X, and Instagram from one core message.')">
+          - Generate platform-specific variants from one core message.
+        </li>
+        <li class="cursor-pointer transition hover:text-[var(--brand)]" onclick="setQuery('Suggest 10 hashtags and 5 opening hooks for founders building in public.')">
+          - Suggest hashtags and opening hooks for founders building in public.
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    import { agent, getToken } from '../lib/api';
+
+    const authWarning = document.getElementById('auth-warning') as HTMLDivElement;
+    const statusIndicator = document.getElementById('status-indicator') as HTMLDivElement;
+    const statusText = document.getElementById('status-text') as HTMLParagraphElement;
+    const statusDetails = document.getElementById('status-details') as HTMLParagraphElement;
+    const frameworkName = document.getElementById('framework-name') as HTMLSpanElement;
+    const agentForm = document.getElementById('agent-form') as HTMLFormElement;
+    const queryInput = document.getElementById('query') as HTMLTextAreaElement;
+    const formError = document.getElementById('form-error') as HTMLDivElement;
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+    const responseContainer = document.getElementById('response-container') as HTMLDivElement;
+    const responseText = document.getElementById('response-text') as HTMLParagraphElement;
+    const responseFramework = document.getElementById('response-framework') as HTMLSpanElement;
+    const responseMock = document.getElementById('response-mock') as HTMLSpanElement;
+    const responseMetadata = document.getElementById('response-metadata') as HTMLDivElement;
+
+    function checkAuth() {
+      const token = getToken();
+      if (!token) {
+        authWarning.classList.remove('hidden');
+        submitBtn.disabled = true;
+        return false;
+      }
+      return true;
+    }
+
+    async function loadStatus() {
+      try {
+        const status = await agent.getStatus();
+        frameworkName.textContent = status.framework.toUpperCase();
+
+        if (status.available) {
+          statusIndicator.className = 'w-3 h-3 rounded-full bg-green-500';
+          statusText.textContent = 'Agent is available';
+          statusDetails.textContent = `Using ${status.framework} framework${status.mock_mode ? ' (Mock Mode)' : ''}`;
+        } else {
+          statusIndicator.className = 'w-3 h-3 rounded-full bg-red-500';
+          statusText.textContent = 'Agent is unavailable';
+          statusDetails.textContent = 'Please check configuration';
+        }
+      } catch (error) {
+        statusIndicator.className = 'w-3 h-3 rounded-full bg-yellow-500';
+        statusText.textContent = 'Unable to check agent status';
+        statusDetails.textContent = 'Please ensure backend is reachable';
+      }
+    }
+
+    (window as any).setQuery = (text: string) => {
+      queryInput.value = text;
+      queryInput.focus();
+    };
+
+    agentForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (!checkAuth()) return;
+
+      formError.classList.add('hidden');
+      responseContainer.classList.add('hidden');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Generating...';
+
+      try {
+        const response = await agent.query(queryInput.value);
+
+        responseText.textContent = response.result;
+        responseFramework.textContent = response.framework;
+        responseMock.textContent = response.metadata?.mock ? 'Yes' : 'No';
+
+        if (response.metadata) {
+          const metadataHtml = Object.entries(response.metadata)
+            .filter(([key]) => key !== 'mock' && key !== 'framework')
+            .map(([key, value]) => `<p><span class="font-medium">${key}:</span> ${value}</p>`)
+            .join('');
+          responseMetadata.innerHTML = metadataHtml;
+        }
+
+        responseContainer.classList.remove('hidden');
+        responseContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } catch (error) {
+        formError.textContent = error instanceof Error ? error.message : 'Error generating content';
+        formError.classList.remove('hidden');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Generate';
+      }
+    });
+
+    checkAuth();
+    loadStatus();
+  </script>
+</BaseLayout>

@@ -1,0 +1,179 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Onboarding">
+  <div class="mx-auto max-w-4xl">
+    <h1 class="mb-2 text-4xl font-bold reveal">Founder Onboarding</h1>
+    <p class="mb-8 text-[var(--ink-muted)] reveal delay-1">
+      Capture your product direction and brand voice before generating content.
+    </p>
+
+    <div class="grid gap-8 md:grid-cols-2">
+      <section class="panel p-6 reveal delay-1">
+        <h2 class="mb-4 text-2xl font-semibold">Product Context</h2>
+        <form id="product-form" class="space-y-4">
+          <div>
+            <label for="product-name" class="mb-1 block text-sm font-medium text-[var(--ink-muted)]">Product Name</label>
+            <input id="product-name" name="product_name" required class="w-full rounded-md border border-[var(--line)] bg-white px-3 py-2 focus:border-[var(--brand)] focus:outline-none" />
+          </div>
+          <div>
+            <label for="product-idea" class="mb-1 block text-sm font-medium text-[var(--ink-muted)]">Product Idea</label>
+            <textarea id="product-idea" name="product_idea" rows="3" required class="w-full rounded-md border border-[var(--line)] bg-white px-3 py-2 focus:border-[var(--brand)] focus:outline-none"></textarea>
+          </div>
+          <div>
+            <label for="audience" class="mb-1 block text-sm font-medium text-[var(--ink-muted)]">Primary Audience</label>
+            <input id="audience" name="audience" required class="w-full rounded-md border border-[var(--line)] bg-white px-3 py-2 focus:border-[var(--brand)] focus:outline-none" />
+          </div>
+          <button type="submit" class="w-full rounded-md bg-[var(--brand)] px-4 py-2 font-medium text-white transition hover:-translate-y-0.5 hover:bg-[var(--brand-dark)]">
+            Save Product Context
+          </button>
+        </form>
+      </section>
+
+      <section class="panel p-6 reveal delay-2">
+        <h2 class="mb-4 text-2xl font-semibold">Brand Voice</h2>
+        <form id="brand-form" class="space-y-4">
+          <div>
+            <label for="tone" class="mb-1 block text-sm font-medium text-[var(--ink-muted)]">Tone</label>
+            <input id="tone" name="tone" placeholder="playful, direct, helpful" required class="w-full rounded-md border border-[var(--line)] bg-white px-3 py-2 focus:border-[var(--brand)] focus:outline-none" />
+          </div>
+          <div>
+            <label for="keywords" class="mb-1 block text-sm font-medium text-[var(--ink-muted)]">Brand Keywords (comma-separated)</label>
+            <input id="keywords" name="keywords" placeholder="founder-first, practical, no-fluff" required class="w-full rounded-md border border-[var(--line)] bg-white px-3 py-2 focus:border-[var(--brand)] focus:outline-none" />
+          </div>
+          <div>
+            <label for="example-post" class="mb-1 block text-sm font-medium text-[var(--ink-muted)]">Example Post</label>
+            <textarea id="example-post" name="example_post" rows="3" required class="w-full rounded-md border border-[var(--line)] bg-white px-3 py-2 focus:border-[var(--brand)] focus:outline-none"></textarea>
+          </div>
+          <div>
+            <label for="figma-url" class="mb-1 block text-sm font-medium text-[var(--ink-muted)]">Figma URL (optional)</label>
+            <input id="figma-url" name="figma_url" placeholder="https://www.figma.com/..." class="w-full rounded-md border border-[var(--line)] bg-white px-3 py-2 focus:border-[var(--brand)] focus:outline-none" />
+          </div>
+          <button type="submit" class="w-full rounded-md bg-[#1d5f62] px-4 py-2 font-medium text-white transition hover:-translate-y-0.5 hover:bg-[#164c4e]">
+            Save Brand Profile
+          </button>
+        </form>
+      </section>
+    </div>
+
+    <section class="panel mt-8 p-6 reveal delay-3">
+      <h2 class="mb-4 text-2xl font-semibold">Generate Weekly Plan (MVP Bridge)</h2>
+      <p class="mb-4 text-sm text-[var(--ink-muted)]">
+        This currently sends your onboarding context to the existing agent endpoint. Dedicated domain APIs are planned next.
+      </p>
+      <button id="generate-plan" class="rounded-md bg-[#1c2741] px-5 py-2 font-medium text-white transition hover:-translate-y-0.5 hover:bg-[#131c30]">
+        Generate Plan
+      </button>
+      <p id="status-message" class="mt-3 text-sm text-[var(--ink-muted)]"></p>
+      <div id="plan-output" class="mt-4 hidden rounded-md border border-[var(--line)] bg-white p-4 text-sm text-[var(--ink)] whitespace-pre-wrap"></div>
+    </section>
+  </div>
+
+  <script>
+    import { agent, getToken } from '../lib/api';
+
+    type FounderContext = {
+      product_name: string;
+      product_idea: string;
+      audience: string;
+      tone: string;
+      keywords: string;
+      example_post: string;
+      figma_url?: string;
+    };
+
+    const STORAGE_KEY = 'founder_onboarding';
+    const productForm = document.getElementById('product-form') as HTMLFormElement;
+    const brandForm = document.getElementById('brand-form') as HTMLFormElement;
+    const generateBtn = document.getElementById('generate-plan') as HTMLButtonElement;
+    const statusMessage = document.getElementById('status-message') as HTMLParagraphElement;
+    const planOutput = document.getElementById('plan-output') as HTMLDivElement;
+
+    function loadData(): Partial<FounderContext> {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : {};
+      } catch {
+        return {};
+      }
+    }
+
+    function saveData(partial: Partial<FounderContext>) {
+      const current = loadData();
+      const next = { ...current, ...partial };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+    }
+
+    function hydrateForms() {
+      const data = loadData();
+      const ids = ['product-name', 'product-idea', 'audience', 'tone', 'keywords', 'example-post', 'figma-url'];
+      for (const id of ids) {
+        const el = document.getElementById(id) as HTMLInputElement | HTMLTextAreaElement | null;
+        if (!el) continue;
+        const key = id.replace('-', '_').replace('-', '_');
+        if (data[key as keyof FounderContext]) {
+          el.value = String(data[key as keyof FounderContext]);
+        }
+      }
+    }
+
+    productForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = new FormData(productForm);
+      saveData({
+        product_name: String(formData.get('product_name') || ''),
+        product_idea: String(formData.get('product_idea') || ''),
+        audience: String(formData.get('audience') || ''),
+      });
+      statusMessage.textContent = 'Product context saved.';
+    });
+
+    brandForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = new FormData(brandForm);
+      saveData({
+        tone: String(formData.get('tone') || ''),
+        keywords: String(formData.get('keywords') || ''),
+        example_post: String(formData.get('example_post') || ''),
+        figma_url: String(formData.get('figma_url') || ''),
+      });
+      statusMessage.textContent = 'Brand profile saved.';
+    });
+
+    generateBtn.addEventListener('click', async () => {
+      const token = getToken();
+      if (!token) {
+        statusMessage.textContent = 'Login is required to generate plan.';
+        return;
+      }
+
+      const context = loadData();
+      if (!context.product_name || !context.product_idea || !context.tone) {
+        statusMessage.textContent = 'Please complete both forms before generating.';
+        return;
+      }
+
+      statusMessage.textContent = 'Generating weekly plan...';
+      planOutput.classList.add('hidden');
+
+      const query = [
+        'Create a 7-day social media content plan for a founder.',
+        'Return day-by-day outputs for LinkedIn, X, and Instagram.',
+        'Include: hook, caption, and 5 hashtags per day.',
+        'Keep tone aligned to the provided brand profile.'
+      ].join(' ');
+
+      try {
+        const response = await agent.query(query, context);
+        planOutput.textContent = response.result;
+        planOutput.classList.remove('hidden');
+        statusMessage.textContent = `Plan generated via ${response.framework}.`;
+      } catch (error) {
+        statusMessage.textContent = error instanceof Error ? error.message : 'Failed to generate plan.';
+      }
+    });
+
+    hydrateForms();
+  </script>
+</BaseLayout>

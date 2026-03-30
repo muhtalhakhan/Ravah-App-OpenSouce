@@ -1,0 +1,1180 @@
+---
+import { SmoothCursor } from "@/components/ui/smooth-cursor";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ravah — Turn what you ship into a week of social content</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <SmoothCursor client:load />
+
+    <!-- ─── NAV ──────────────────────────────────────────────── -->
+    <header class="nav-bar">
+      <div class="nav-inner container">
+        <a class="brand" href="/">ravah</a>
+        <nav class="nav-links">
+          <a href="#problem">Problem</a>
+          <a href="#how">How it works</a>
+          <a href="#features">Features</a>
+          <a href="/blog">Blog</a>
+        </nav>
+        <a href="/waitlist" class="btn btn-primary">Get started →</a>
+      </div>
+    </header>
+
+    <!-- ─── HERO ──────────────────────────────────────────────── -->
+    <section class="hero">
+      <div class="container hero-inner">
+
+        <!-- social proof badge -->
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          50+ founders &nbsp;·&nbsp; 500+ posts generated
+        </div>
+
+        <h1 class="hero-h1">
+          Turn what you ship<br />
+          <em>into a week of social content.</em>
+        </h1>
+
+        <p class="hero-sub">
+          Tell Ravah what you built this week. It knows your product, your voice,
+          and your audience — and turns one update into 7 days of posts for
+          LinkedIn, X, and Threads.
+        </p>
+
+        <div class="hero-ctas">
+          <a href="/waitlist" class="btn btn-primary btn-lg">Start for free</a>
+          <a href="#how" class="btn btn-ghost btn-lg">See how it works</a>
+        </div>
+
+        <!-- product mockup: 3 social post cards -->
+        <div class="hero-mockup" aria-hidden="true">
+          <div class="post-card post-card--linkedin">
+            <div class="post-meta">
+              <div class="post-avatar" style="background:#0077b5"></div>
+              <div>
+                <div class="post-name">Usama · LinkedIn</div>
+                <div class="post-time">Today</div>
+              </div>
+              <div class="post-platform">in</div>
+            </div>
+            <p class="post-body">
+              We just shipped context memory to Ravah. Your product context is stored
+              once — and every week's content gets sharper automatically. 🧠
+            </p>
+            <div class="post-stats">
+              <span>147 reactions</span><span>23 comments</span>
+            </div>
+          </div>
+
+          <div class="post-card post-card--x">
+            <div class="post-meta">
+              <div class="post-avatar" style="background:#000"></div>
+              <div>
+                <div class="post-name">@usama_codes · X</div>
+                <div class="post-time">Today</div>
+              </div>
+              <div class="post-platform post-platform--x">𝕏</div>
+            </div>
+            <p class="post-body">
+              shipped context memory to @ravah_app today<br /><br />
+              you set up your product once. every week's posts just know you
+            </p>
+            <div class="post-stats">
+              <span>312 likes</span><span>88 reposts</span>
+            </div>
+          </div>
+
+          <div class="post-card post-card--threads">
+            <div class="post-meta">
+              <div class="post-avatar" style="background:#1c1c1e"></div>
+              <div>
+                <div class="post-name">usama · Threads</div>
+                <div class="post-time">Today</div>
+              </div>
+              <div class="post-platform">@</div>
+            </div>
+            <p class="post-body">
+              building in public means nothing if nobody sees what you're building.<br /><br />
+              ravah solves the "i forgot to post" problem for founders.
+            </p>
+            <div class="post-stats">
+              <span>94 likes</span><span>11 replies</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── FEATURED ON ───────────────────────────────────────── -->
+    <div class="logos-band" aria-label="Featured on">
+      <div class="container">
+        <p class="logos-label">Featured on</p>
+        <div class="logos-row">
+          <span class="logo-chip">Fazier</span>
+          <span class="logo-chip">Shipybara</span>
+          <span class="logo-chip">Startup Fame</span>
+          <span class="logo-chip">Twelve Tools</span>
+          <span class="logo-chip">Wired Business</span>
+          <span class="logo-chip">Turbo0</span>
+          <span class="logo-chip">Findly.tools</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── PAIN ──────────────────────────────────────────────── -->
+    <section class="pain-section" id="problem">
+      <div class="container">
+        <p class="section-eyebrow">The problem</p>
+        <h2 class="section-h2">
+          You know what to post.<br />
+          <em>You just never do it.</em>
+        </h2>
+
+        <div class="pain-grid">
+          <div class="pain-card">
+            <div class="pain-icon">↩</div>
+            <h3>You re-explain your product to ChatGPT.</h3>
+            <p>Every. Single. Time. Your context lives nowhere. Every session starts from scratch.</p>
+          </div>
+          <div class="pain-card">
+            <div class="pain-icon">🤖</div>
+            <h3>The posts sound generic.</h3>
+            <p>Fill-in-the-blank templates and forgetful AI produce content that could be anyone's. Not yours.</p>
+          </div>
+          <div class="pain-card">
+            <div class="pain-icon">🚢</div>
+            <h3>You shipped something great. Nobody knows.</h3>
+            <p>Your best work disappears into the void because turning a launch into content is just one more task you never get to.</p>
+          </div>
+          <div class="pain-card">
+            <div class="pain-icon">📉</div>
+            <h3>You post for a week, then go silent for a month.</h3>
+            <p>Consistency is the whole game. Inconsistency is how you lose it — even when you're shipping constantly.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── HOW IT WORKS (sticky scroll) ─────────────────────── -->
+    <section class="how-section" id="how">
+      <div class="container">
+        <p class="section-eyebrow">How it works</p>
+        <h2 class="section-h2">
+          Three steps.<br />
+          <em>Once set up, it runs itself.</em>
+        </h2>
+      </div>
+
+      <div class="steps-track">
+
+        <!-- Step 1 -->
+        <div class="step-row reveal-step">
+          <div class="step-text">
+            <div class="step-num">01</div>
+            <h3 class="step-h3">Set up your product context.</h3>
+            <p class="step-p">
+              Spend 5 minutes telling Ravah about your product — what it does, who
+              it's for, what makes it different. This happens once. Ravah stores
+              everything and never forgets.
+            </p>
+            <div class="step-detail">
+              <span class="step-tag">5 min · one time</span>
+            </div>
+          </div>
+          <div class="step-visual">
+            <div class="step-card">
+              <div class="card-header">
+                <div class="card-dot card-dot--green"></div>
+                <span class="card-title">Product context</span>
+              </div>
+              <div class="card-body">
+                <div class="field-row">
+                  <label>What you're building</label>
+                  <div class="field-value">AI-powered content engine for founders building in public</div>
+                </div>
+                <div class="field-row">
+                  <label>Your audience</label>
+                  <div class="field-value">Solo founders, indie hackers, early-stage teams</div>
+                </div>
+                <div class="field-row">
+                  <label>Your voice</label>
+                  <div class="field-value">Direct, builder-first, no corporate speak</div>
+                </div>
+                <div class="field-save">Context saved ✓</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-row step-row--reverse reveal-step">
+          <div class="step-text">
+            <div class="step-num">02</div>
+            <h3 class="step-h3">Add your weekly update.</h3>
+            <p class="step-p">
+              Every week, drop in a quick note — what you shipped, what you learned,
+              what's next. A few sentences is enough. Ravah handles the rest.
+            </p>
+            <div class="step-detail">
+              <span class="step-tag">weekly · 2 min</span>
+            </div>
+          </div>
+          <div class="step-visual">
+            <div class="step-card">
+              <div class="card-header">
+                <div class="card-dot card-dot--blue"></div>
+                <span class="card-title">This week's update</span>
+              </div>
+              <div class="card-body">
+                <div class="update-box">
+                  Shipped context memory. Users no longer need to re-explain their
+                  product each session — Ravah now remembers everything and generates
+                  increasingly on-brand content week over week.
+                </div>
+                <button class="card-btn">Generate 7 days of content →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-row reveal-step">
+          <div class="step-text">
+            <div class="step-num">03</div>
+            <h3 class="step-h3">Get 7 days of content.</h3>
+            <p class="step-p">
+              Ravah generates a full week of posts — LinkedIn, X, and Threads —
+              in your voice, built around what you actually shipped. No editing
+              required. Just post.
+            </p>
+            <div class="step-detail">
+              <span class="step-tag">instant · 7 posts</span>
+            </div>
+          </div>
+          <div class="step-visual">
+            <div class="step-card">
+              <div class="card-header">
+                <div class="card-dot card-dot--purple"></div>
+                <span class="card-title">Your week of content</span>
+              </div>
+              <div class="card-body">
+                <div class="day-list">
+                  <div class="day-item day-item--done">Mon · LinkedIn launch post</div>
+                  <div class="day-item day-item--done">Tue · X thread (technical)</div>
+                  <div class="day-item day-item--done">Wed · Threads story angle</div>
+                  <div class="day-item day-item--done">Thu · LinkedIn lessons learned</div>
+                  <div class="day-item day-item--done">Fri · X engagement post</div>
+                  <div class="day-item day-item--done">Sat · Threads casual take</div>
+                  <div class="day-item day-item--done">Sun · LinkedIn reflection</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── VS COMPARISON ─────────────────────────────────────── -->
+    <section class="vs-section" id="features">
+      <div class="container">
+        <p class="section-eyebrow">Why Ravah</p>
+        <h2 class="section-h2">
+          Not just another<br />
+          <em>AI writing tool.</em>
+        </h2>
+
+        <div class="vs-table">
+          <div class="vs-header">
+            <div class="vs-col vs-col--feature"></div>
+            <div class="vs-col vs-col--them">Template tools</div>
+            <div class="vs-col vs-col--them">ChatGPT</div>
+            <div class="vs-col vs-col--us">Ravah</div>
+          </div>
+
+          <div class="vs-row">
+            <div class="vs-col vs-col--feature">Knows your product</div>
+            <div class="vs-col vs-col--them"><span class="vs-no">✗</span></div>
+            <div class="vs-col vs-col--them"><span class="vs-no">✗</span> forgets each session</div>
+            <div class="vs-col vs-col--us"><span class="vs-yes">✓</span> stored once, always</div>
+          </div>
+
+          <div class="vs-row">
+            <div class="vs-col vs-col--feature">Sounds like you</div>
+            <div class="vs-col vs-col--them"><span class="vs-no">✗</span> fill-in-the-blank</div>
+            <div class="vs-col vs-col--them"><span class="vs-mid">~</span> if you prompt well</div>
+            <div class="vs-col vs-col--us"><span class="vs-yes">✓</span> voice trained on you</div>
+          </div>
+
+          <div class="vs-row">
+            <div class="vs-col vs-col--feature">Gets smarter over time</div>
+            <div class="vs-col vs-col--them"><span class="vs-no">✗</span></div>
+            <div class="vs-col vs-col--them"><span class="vs-no">✗</span></div>
+            <div class="vs-col vs-col--us"><span class="vs-yes">✓</span> improves weekly</div>
+          </div>
+
+          <div class="vs-row">
+            <div class="vs-col vs-col--feature">Covers all 3 platforms</div>
+            <div class="vs-col vs-col--them"><span class="vs-mid">~</span></div>
+            <div class="vs-col vs-col--them"><span class="vs-mid">~</span> manual</div>
+            <div class="vs-col vs-col--us"><span class="vs-yes">✓</span> LinkedIn, X, Threads</div>
+          </div>
+
+          <div class="vs-row">
+            <div class="vs-col vs-col--feature">Built for founders</div>
+            <div class="vs-col vs-col--them"><span class="vs-no">✗</span></div>
+            <div class="vs-col vs-col--them"><span class="vs-no">✗</span></div>
+            <div class="vs-col vs-col--us"><span class="vs-yes">✓</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── FINAL CTA ─────────────────────────────────────────── -->
+    <section class="cta-section">
+      <div class="container cta-inner">
+        <p class="section-eyebrow" style="text-align:center">Free during early access</p>
+        <h2 class="cta-h2">
+          Start shipping content<br />
+          <em>as fast as you ship product.</em>
+        </h2>
+        <p class="cta-sub">
+          No credit card. No templates to fill. Just tell Ravah what you built
+          and get a week of posts — instantly.
+        </p>
+        <a href="/waitlist" class="btn btn-primary btn-xl">Get started for free →</a>
+        <p class="cta-note">Built by <a href="https://x.com/usama_codes" target="_blank">Usama</a> · For founders building in public</p>
+      </div>
+    </section>
+
+    <!-- ─── FOOTER ─────────────────────────────────────────────── -->
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <a href="/" class="brand">ravah</a>
+          <p>Turn what you ship into a week of social content.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Product</h4>
+            <a href="#how">How it works</a>
+            <a href="#features">Features</a>
+            <a href="/blog">Blog</a>
+            <a href="/changelog">Changelog</a>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <a href="https://x.com/usama_codes" target="_blank">Built by Usama</a>
+            <a href="/waitlist">Early access</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container">
+          <p>© 2025 Ravah. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+  </body>
+</html>
+
+<style is:global>
+  /* ─── RESET & BASE ──────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --font-sans: 'Inter', system-ui, sans-serif;
+    --font-serif: 'Lora', Georgia, serif;
+
+    --sand: #f5f0e8;
+    --sand-dark: #ede7d9;
+    --ink: #1a1a18;
+    --ink-light: #4a4a46;
+    --ink-faint: #8a8a84;
+    --accent: #c8a96e;
+    --accent-light: #f0e8d8;
+    --green: #22c55e;
+    --blue: #3b82f6;
+    --purple: #a855f7;
+    --white: #ffffff;
+
+    --radius: 8px;
+    --radius-lg: 16px;
+
+    --container: 1120px;
+    --section-gap: 7rem;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--white);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { text-decoration: none; color: inherit; }
+
+  .container {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* ─── TYPOGRAPHY ────────────────────────────────────────────── */
+  .section-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 1rem;
+  }
+
+  .section-h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4.5vw, 3.25rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 3rem;
+  }
+
+  .section-h2 em {
+    font-style: italic;
+    color: var(--ink-light);
+  }
+
+  /* ─── BUTTONS ───────────────────────────────────────────────── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: var(--radius);
+    padding: 0.6rem 1.25rem;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    border: 1px solid transparent;
+  }
+
+  .btn-primary {
+    background: var(--ink);
+    color: var(--white);
+    border-color: var(--ink);
+  }
+  .btn-primary:hover { background: #2f2f2c; border-color: #2f2f2c; }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink-light);
+    border-color: #d4d0c8;
+  }
+  .btn-ghost:hover { border-color: var(--ink-light); color: var(--ink); }
+
+  .btn-lg { padding: 0.75rem 1.75rem; font-size: 0.95rem; }
+  .btn-xl { padding: 0.9rem 2.25rem; font-size: 1rem; }
+
+  /* ─── NAV ───────────────────────────────────────────────────── */
+  .nav-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #ece8e0;
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    gap: 2rem;
+  }
+
+  .brand {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    font-size: 0.875rem;
+    color: var(--ink-light);
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+  }
+
+  /* ─── HERO ──────────────────────────────────────────────────── */
+  .hero {
+    padding: 5rem 0 0;
+    overflow: hidden;
+  }
+
+  .hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    color: var(--ink-light);
+    background: var(--sand);
+    border: 1px solid var(--sand-dark);
+    border-radius: 100px;
+    padding: 0.35rem 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .badge-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 0 3px rgba(34,197,94,0.2);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(34,197,94,0.2); }
+    50% { box-shadow: 0 0 0 6px rgba(34,197,94,0.1); }
+  }
+
+  .hero-h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2.4rem, 6.5vw, 5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    max-width: 760px;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-h1 em {
+    font-style: italic;
+    color: var(--ink-light);
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--ink-light);
+    max-width: 540px;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+
+  .hero-ctas {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 4rem;
+  }
+
+  /* Product mockup */
+  .hero-mockup {
+    width: 100%;
+    max-width: 860px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    background: var(--sand);
+    border: 1px solid var(--sand-dark);
+    border-bottom: none;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    padding: 1.5rem 1.5rem 0;
+  }
+
+  @media (max-width: 640px) {
+    .hero-mockup { grid-template-columns: 1fr; }
+  }
+
+  .post-card {
+    background: var(--white);
+    border: 1px solid #e8e4dc;
+    border-radius: var(--radius);
+    padding: 1rem;
+    text-align: left;
+    font-size: 0.78rem;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .post-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .post-name { font-weight: 600; font-size: 0.72rem; color: var(--ink); }
+  .post-time { font-size: 0.65rem; color: var(--ink-faint); }
+
+  .post-platform {
+    margin-left: auto;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #0077b5;
+  }
+  .post-platform--x { color: var(--ink); }
+
+  .post-body {
+    color: var(--ink);
+    line-height: 1.55;
+    margin-bottom: 0.75rem;
+    font-size: 0.76rem;
+  }
+
+  .post-stats {
+    display: flex;
+    gap: 0.75rem;
+    font-size: 0.65rem;
+    color: var(--ink-faint);
+  }
+
+  /* ─── LOGOS BAND ─────────────────────────────────────────────── */
+  .logos-band {
+    background: var(--sand);
+    border-top: 1px solid var(--sand-dark);
+    border-bottom: 1px solid var(--sand-dark);
+    padding: 1.25rem 0;
+  }
+
+  .logos-band .container {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .logos-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    white-space: nowrap;
+  }
+
+  .logos-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .logo-chip {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--ink-light);
+    background: var(--white);
+    border: 1px solid var(--sand-dark);
+    border-radius: var(--radius);
+    padding: 0.3rem 0.75rem;
+    white-space: nowrap;
+  }
+
+  /* ─── PAIN ───────────────────────────────────────────────────── */
+  .pain-section {
+    padding: var(--section-gap) 0;
+    background: var(--white);
+  }
+
+  .pain-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 640px) {
+    .pain-grid { grid-template-columns: 1fr; }
+  }
+
+  .pain-card {
+    background: var(--sand);
+    border: 1px solid var(--sand-dark);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+  }
+
+  .pain-card:hover { border-color: #c8c0b0; }
+
+  .pain-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .pain-card h3 {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    line-height: 1.35;
+  }
+
+  .pain-card p {
+    font-size: 0.875rem;
+    color: var(--ink-light);
+    line-height: 1.65;
+  }
+
+  /* ─── HOW IT WORKS ───────────────────────────────────────────── */
+  .how-section {
+    padding: var(--section-gap) 0;
+    background: var(--sand);
+    border-top: 1px solid var(--sand-dark);
+    border-bottom: 1px solid var(--sand-dark);
+  }
+
+  .steps-track {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+  }
+
+  .step-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .step-row--reverse {
+    direction: rtl;
+  }
+  .step-row--reverse > * { direction: ltr; }
+
+  @media (max-width: 768px) {
+    .step-row, .step-row--reverse {
+      grid-template-columns: 1fr;
+      direction: ltr;
+      gap: 2rem;
+    }
+  }
+
+  .step-num {
+    font-family: var(--font-serif);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    margin-bottom: 1rem;
+  }
+
+  .step-h3 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  .step-p {
+    font-size: 0.95rem;
+    color: var(--ink-light);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    max-width: 420px;
+  }
+
+  .step-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    background: var(--sand-dark);
+    border-radius: 100px;
+    padding: 0.25rem 0.75rem;
+  }
+
+  /* Step card visuals */
+  .step-visual {
+    position: relative;
+  }
+
+  .step-card {
+    background: var(--white);
+    border: 1px solid #e4e0d8;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.875rem 1.25rem;
+    border-bottom: 1px solid #f0ece4;
+    background: var(--sand);
+  }
+
+  .card-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .card-dot--green { background: var(--green); }
+  .card-dot--blue  { background: var(--blue); }
+  .card-dot--purple { background: var(--purple); }
+
+  .card-title {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--ink-light);
+  }
+
+  .card-body {
+    padding: 1.25rem;
+  }
+
+  .field-row {
+    margin-bottom: 0.875rem;
+  }
+
+  .field-row label {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 0.25rem;
+  }
+
+  .field-value {
+    font-size: 0.82rem;
+    color: var(--ink);
+    background: var(--sand);
+    border: 1px solid var(--sand-dark);
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .field-save {
+    font-size: 0.75rem;
+    color: var(--green);
+    font-weight: 500;
+    margin-top: 0.5rem;
+  }
+
+  .update-box {
+    font-size: 0.85rem;
+    color: var(--ink);
+    background: var(--sand);
+    border: 1px solid var(--sand-dark);
+    border-radius: 6px;
+    padding: 0.875rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .card-btn {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--white);
+    background: var(--ink);
+    border: none;
+    border-radius: var(--radius);
+    padding: 0.6rem 1.25rem;
+    cursor: pointer;
+  }
+
+  .day-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .day-item {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    color: var(--ink-light);
+    background: var(--sand);
+    border: 1px solid var(--sand-dark);
+  }
+
+  .day-item--done {
+    color: var(--ink);
+    border-color: #c8e6c9;
+    background: #f0fdf4;
+  }
+  .day-item--done::before {
+    content: "✓  ";
+    color: var(--green);
+    font-weight: 600;
+  }
+
+  /* Scroll reveal */
+  .reveal-step {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal-step.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @supports (animation-timeline: scroll()) {
+    .reveal-step {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: step-reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 40%;
+    }
+
+    @keyframes step-reveal {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  }
+
+  /* ─── VS TABLE ───────────────────────────────────────────────── */
+  .vs-section {
+    padding: var(--section-gap) 0;
+    background: var(--white);
+  }
+
+  .vs-table {
+    border: 1px solid #e4e0d8;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .vs-header, .vs-row {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1.5fr 1.5fr;
+  }
+
+  .vs-header {
+    background: var(--sand);
+    border-bottom: 1px solid #e4e0d8;
+  }
+
+  .vs-col {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.82rem;
+    border-right: 1px solid #ede9e0;
+    display: flex;
+    align-items: center;
+  }
+  .vs-col:last-child { border-right: none; }
+
+  .vs-col--feature { font-weight: 500; color: var(--ink-light); }
+  .vs-col--them { font-weight: 600; color: var(--ink-faint); font-size: 0.75rem; letter-spacing: 0.04em; }
+  .vs-col--us {
+    font-weight: 600;
+    color: var(--ink);
+    background: #fafaf8;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+  }
+
+  .vs-row { border-bottom: 1px solid #f0ece4; }
+  .vs-row:last-child { border-bottom: none; }
+  .vs-row .vs-col--them { color: var(--ink-light); font-weight: 400; }
+  .vs-row .vs-col--us { color: var(--ink); background: rgba(240,253,244,0.5); font-weight: 500; }
+  .vs-row .vs-col--feature { color: var(--ink); font-weight: 500; }
+
+  .vs-yes { color: var(--green); font-weight: 700; margin-right: 0.25rem; }
+  .vs-no  { color: #ef4444; font-weight: 700; margin-right: 0.25rem; }
+  .vs-mid { color: #f59e0b; font-weight: 700; margin-right: 0.25rem; }
+
+  @media (max-width: 640px) {
+    .vs-header, .vs-row { grid-template-columns: 1fr 1fr; }
+    .vs-col--them:first-of-type { display: none; }
+  }
+
+  /* ─── CTA SECTION ────────────────────────────────────────────── */
+  .cta-section {
+    padding: var(--section-gap) 0;
+    background: var(--ink);
+  }
+
+  .cta-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .cta-section .section-eyebrow {
+    color: rgba(255,255,255,0.45);
+  }
+
+  .cta-h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-h2 em {
+    font-style: italic;
+    color: rgba(255,255,255,0.55);
+  }
+
+  .cta-sub {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.55);
+    max-width: 460px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+
+  .cta-section .btn-primary {
+    background: var(--white);
+    color: var(--ink);
+    border-color: var(--white);
+    font-size: 1rem;
+  }
+  .cta-section .btn-primary:hover { background: var(--sand); border-color: var(--sand); }
+
+  .cta-note {
+    margin-top: 1.5rem;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.35);
+  }
+  .cta-note a { color: rgba(255,255,255,0.55); text-decoration: underline; }
+
+  /* ─── FOOTER ─────────────────────────────────────────────────── */
+  .footer {
+    background: #111110;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4rem;
+    padding-top: 3.5rem;
+    padding-bottom: 3rem;
+  }
+
+  @media (max-width: 640px) {
+    .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+  }
+
+  .footer-brand .brand {
+    display: inline-block;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-brand p {
+    font-size: 0.82rem;
+    max-width: 260px;
+    line-height: 1.6;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 3.5rem;
+  }
+
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .footer-col h4 {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 0.25rem;
+  }
+
+  .footer-col a {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.5);
+    transition: color 0.15s;
+  }
+  .footer-col a:hover { color: rgba(255,255,255,0.85); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding: 1.25rem 0;
+  }
+
+  .footer-bottom p {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.3);
+  }
+</style>
+
+<script>
+  // Intersection Observer fallback for browsers without view-timeline
+  if (!CSS.supports('animation-timeline', 'scroll()')) {
+    const steps = document.querySelectorAll('.reveal-step');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-visible');
+            observer.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    steps.forEach((el) => observer.observe(el));
+  }
+</script>

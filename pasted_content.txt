@@ -1,0 +1,143 @@
+# 🧠 Product Ideation: AI-Powered Content Generator for Founders
+
+## 1. Problem Overview
+
+When founders build products, they often struggle to **communicate and market** them effectively.
+
+The common challenges are:
+
+- Not knowing **what to post** about their product.
+- Difficulty writing **engaging copy** that fits their brand.
+- **Inconsistent visuals** or off-brand content.
+- Spending **too much time** creating posts manually.
+
+This product aims to solve that by turning **product ideas + brand identity + design assets** into a **cohesive social media content plan** — automatically.
+
+---
+
+## 2. Market Research & Insights
+
+### 🧩 Reddit & Social Media Findings
+
+| Pain Point | Insight |
+| --- | --- |
+| “I’ve made great products but I’m terrible at promotion.” | Founders feel blocked by marketing, not building. |
+| “Being a one-person content team is exhausting.” | Time and resource constraints are huge. |
+| “Getting over the hump of making new posts is so difficult.” | Lack of structure and confidence. |
+| “I copy competitors but it feels inauthentic.” | People want templates and originality. |
+| “AI tools are too generic for my brand.” | Demand for personalization and brand-consistent output. |
+
+### 💬 Takeaway
+
+There’s a **clear gap** between current AI content tools and what early-stage founders actually need —
+
+**a fast, brand-aware, easy-to-use tool** that respects their design system and tone of voice.
+
+---
+
+## 3. Competitor Snapshot (Brief) → need to work on this
+
+| Competitor | Strengths | Gaps / Opportunities |
+| --- | --- | --- |
+| **Copy.ai / Jasper / Writecream** | Strong text generation; templates for social media. | Weak brand alignment. No design import. Generic tone. |
+| **Rocketium / UNUM** | Visual post generation, scheduling. | Not product-driven; lacks text generation depth. |
+| **Canva Magic Write** | Visual-first; familiar UI. | No strategy or brand voice continuity. |
+| **MediaHappi / SoMin.ai** | End-to-end automation attempts. | Lack personality or integration flexibility. |
+
+### 🧭 Opportunity Space
+
+- Brand-aware generation (voice, tone, style).
+- Figma design import.
+- Idea → strategy → content pipeline.
+- Platform-optimized outputs (LinkedIn, X, Instagram, etc.).
+- Ultra-simple UX for non-marketers.
+
+---
+
+## 4. Product Vision
+
+> Empower founders to turn their product ideas and brand identity into a week’s worth of engaging, platform-optimized content — effortlessly.
+> 
+
+### 🎯 Product Goals
+
+- Reduce content creation time by **70%**.
+- Enable consistent posting (3–5 posts per week).
+- Boost engagement metrics by **20–30%** compared to manual posts.
+- Retain **>50%** of trial users after the first month.
+
+---
+
+## 5. MVP Definition
+
+### 🧱 Must-Have Features
+
+- Input: Product idea & short description.
+- Input: Brand voice (keywords, tone, example post).
+- Figma import: logo, palette, typography.
+- Generate post ideas & content plan for a week.
+- Create captions, hooks, hashtags (for LinkedIn, X, Instagram).
+- Export copy and simple visuals (based on brand assets).
+
+### 🚀 Nice-to-Have (Future)
+
+- Full AI image / video generation.
+- Auto-posting or scheduling integration.
+- Analytics & engagement tracking.
+- Collaboration tools (feedback, editing).
+- Voice refinement through user feedback.
+
+### 🧭 Success Metrics
+
+| Metric | Target |
+| --- | --- |
+| Time to first usable post | < 30 minutes |
+| Posts generated per week | ≥ 5 |
+| User retention (month 1) | ≥ 50% |
+| NPS (user satisfaction) | > 8 |
+
+---
+
+## 6. Ideal Customer Profile (ICP)
+
+| Attribute | Description |
+| --- | --- |
+| **Who** | Solo founders, indie hackers, early-stage startups, small teams (1–5). |
+| **Stage** | Pre-launch → early growth. |
+| **Pain Points** | No content team, low marketing budget, unsure what to post. |
+| **Goals** | Consistent posting, professional brand presence, higher engagement. |
+| **Budget** | Low-mid range SaaS ($15–$50/mo). |
+| **Market** | Global, English-speaking initially (expand later). |
+
+---
+
+## 7. Refined Product Summary
+
+### 🪄 Product Statement
+
+> A SaaS tool that transforms product ideas + brand identity + design assets into consistent, high-quality social media content tailored for each platform.
+> 
+
+### 🧰 Core Differentiators
+
+- Learns and applies **brand voice + visual identity**.
+- **Imports from Figma** to generate matching visuals.
+- Suggests **weekly content themes and strategies**.
+- Generates **captions + hashtags + visuals** in one go.
+- Exports to **scheduling tools** (Buffer, Notion, etc.).
+
+### 🌱 MVP Goal
+
+> Let a founder generate their first week of branded social content in under 30 minutes, from idea to export.
+> 
+
+---
+
+## 8. Next Steps (Optional)
+
+If you’d like, the next logical steps are:
+
+1. **Create a positioning statement** and early landing page copy.
+2. **Define a roadmap** (3 / 6 / 12 months).
+3. **Sketch early wireframes or flows** for onboarding and content generation.
+4. **Run small validation tests** with founders on Reddit or IndieHackers.
