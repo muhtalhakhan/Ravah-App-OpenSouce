@@ -42,3 +42,10 @@ requests==2.31.0
 
 # Optional: Redis for caching
 redis==5.0.1
+
+# CLI
+typer[all]==0.12.3
+rich==13.7.1
+
+# Google AI / Gemini (new unified SDK)
+google-genai==1.16.0

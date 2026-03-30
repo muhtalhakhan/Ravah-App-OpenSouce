@@ -43,6 +43,10 @@ class Settings(BaseSettings):
     # Redis (optional)
     REDIS_URL: str | None = None
 
+    # Google AI (Gemini) — used for CLI post generation
+    GOOGLE_API_KEY: str | None = None
+    GOOGLE_AI_MODEL: str = "gemini-2.5-flash-preview-04-17"
+
     # Supabase (optional)
     SUPABASE_URL: str | None = None
     SUPABASE_ANON_KEY: str | None = None

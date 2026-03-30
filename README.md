@@ -1,176 +1,171 @@
-# Full-Stack Agentic Application
+# Ravah
 
-A complete full-stack application with FastAPI backend, Astro frontend, PostgreSQL database, JWT authentication, and agentic framework integration.
+![Ravah](broken_ravah.png)
 
-## Project Structure
+Open-source founder content platform · [ravah.app](https://ravah.app)
 
-```
-Architecture-Rawah/
-├── backend/                 # FastAPI backend
-│   ├── app/
-│   │   ├── models/         # SQLAlchemy models
-│   │   ├── routers/        # API routes
-│   │   ├── schemas/        # Pydantic schemas
-│   │   └── utils/          # Utilities (auth, dependencies)
-│   ├── main.py             # FastAPI app entry point
-│   └── requirements.txt    # Python dependencies
-├── frontend/               # Astro frontend
-│   ├── src/
-│   │   ├── pages/          # Astro pages
-│   │   ├── layouts/        # Layout components
-│   │   └── lib/            # API client
-│   └── package.json        # Node.js dependencies
-└── docker-compose.yml      # Docker services
-```
+---
 
-## Quick Start
+## What is this?
 
-### Option 1: Using Docker Compose (Recommended)
+Ravah is a CLI-first tool that takes a short description of what you are building and generates a full content calendar — posts for X, Instagram, and LinkedIn — using Google Gemini and the **ClearV framework**.
+
+The frontend and REST API are included but optional. Everything works from the terminal.
+
+---
+
+## Quick start
 
 ```bash
-# Start all services (PostgreSQL, Redis, Backend, Frontend)
-docker-compose up -d
+git clone <repo-url>
+cd Architecture-Rawah/backend
 
-# View logs
-docker-compose logs -f
+pip install -r requirements.txt
+cp ../.env.example .env          # add DATABASE_URL, JWT_SECRET_KEY, GOOGLE_API_KEY
+
+alembic upgrade head             # or use SQLite: DATABASE_URL=sqlite:///./dev.db
+python cli.py health             # verify setup
 ```
 
-### Option 2: Manual Setup
+> **No Postgres?** Set `DATABASE_URL=sqlite:///./dev.db` in `.env` and skip the Alembic step for the `generate` command — it has no database dependency.
 
-1. **Start PostgreSQL** (required):
-   ```bash
-   # Using Docker
-   docker run -d --name postgres \
-     -e POSTGRES_USER=postgres \
-     -e POSTGRES_PASSWORD=postgres \
-     -e POSTGRES_DB=agentapp \
-     -p 5432:5432 postgres:15-alpine
-   ```
+---
 
-2. **Backend Setup**:
-   ```bash
-   cd backend
-   pip install -r requirements.txt
-   
-   # Copy environment file
-   cp ../.env.example .env
-   
-   # Run database migrations
-   alembic upgrade head
-   
-   # Start backend
-   python main.py
-   ```
-
-3. **Frontend Setup**:
-   ```bash
-   cd frontend
-   npm install
-   npm run dev
-   ```
-
-### Option 3: Quick Test (Python only)
+## Generate posts
 
 ```bash
-# Test the backend without database setup
-python3 start.py
+python cli.py generate
 ```
 
-## API Endpoints
+Walks you through 9 questions, calls Gemini, and writes every post to the terminal and to `backend/output/posts_<timestamp>.md`.
 
-- **Health Check**: `GET /health`
-- **API Docs**: `GET /docs`
-- **Authentication**: 
-  - `POST /auth/signup` - User registration
-  - `POST /auth/login` - User login
-  - `GET /auth/me` - Get current user
-- **Items CRUD**: 
-  - `GET /items` - List items
-  - `POST /items` - Create item
-  - `PUT /items/{id}` - Update item
-  - `DELETE /items/{id}` - Delete item
-- **Agent**: 
-  - `POST /agent/query` - Query the agent
-  - `GET /agent/status` - Agent status
+| # | Prompt | Choices |
+| - | ------ | ------- |
+| 1 | Mode | Building in public / Product content |
+| 2 | Summary | Free text |
+| 3 | Duration | 7 / 18 / 30 days |
+| 4 | Platforms | x, instagram, linkedin |
+| 5 | Style | Educational / Storytelling / Motivational / Behind the scenes / Mixed |
+| 6 | Tone | 5 presets or custom |
+| 7 | Audience | Free text |
+| 8 | Keywords | Optional |
+| 9 | Avoid | Optional |
 
-## Frontend Pages
+**ClearV framework** — every post is structured as:
 
-- **Home**: `http://localhost:4321/`
-- **Login**: `http://localhost:4321/login`
-- **Signup**: `http://localhost:4321/signup`
-- **Items**: `http://localhost:4321/items`
-- **Agent**: `http://localhost:4321/agent`
+| | Component | Purpose |
+| - | --------- | ------- |
+| C | Capture | Scroll-stopping hook |
+| L | Lead | Single core message |
+| E | Educate | Insight, story, or data |
+| A | Activate | Call-to-action |
+| R | Resonate | Emotionally sticky close |
+| V | Visual | Image/graphic description |
+
+Requires `GOOGLE_API_KEY` in `.env`. Free key at [aistudio.google.com](https://aistudio.google.com/app/apikey).
+
+---
+
+## All CLI commands
+
+```bash
+python cli.py --help                            # list everything
+python cli.py generate                          # AI post generator
+python cli.py health                            # config + status check
+python cli.py serve                             # start API server (localhost:8000)
+python cli.py integrations                      # Supabase / Redis / OpenAI status
+
+python cli.py auth signup / login / me / logout
+python cli.py agent query "<text>"
+python cli.py agent status
+
+python cli.py workflow create-product-idea
+python cli.py workflow create-brand-profile
+python cli.py workflow generate-content-plan --product-idea-id 1
+python cli.py workflow generate-posts --content-plan-id 1
+```
+
+---
+
+## Customise it for your use case
+
+The CLI is two files. Edit them freely.
+
+**[backend/cli.py](backend/cli.py)** — every command is a plain `@app.command()` function. Add yours the same way.
+
+**[backend/app/gemini_service.py](backend/app/gemini_service.py)** — holds the system prompt, ClearV definition, and platform specs. Common changes:
+
+- **Swap the content framework** — edit `_build_system_prompt()` and the ClearV block in `_build_user_prompt()`. Replace with AIDA, PAS, StoryBrand, or anything else.
+- **Change the model** — set `GOOGLE_AI_MODEL` in `.env` (`gemini-2.5-flash-preview-04-17` by default).
+- **Add a platform** — add an entry to `_PLATFORM_SPECS`, then add it to the platform prompt in `generate()`.
+- **Change duration options** — edit the `days_key` dict in `generate()`.
+
+---
 
 ## Configuration
 
-Copy `.env.example` to `.env` and update the values:
-
 ```env
-# Database
+# Required
 DATABASE_URL=postgresql://postgres:postgres@localhost:5432/agentapp
+JWT_SECRET_KEY=<openssl rand -hex 32>
 
-# JWT Secret (generate with: openssl rand -hex 32)
-JWT_SECRET_KEY=your-secret-key-here
+# Google AI — for `python cli.py generate`
+GOOGLE_API_KEY=your-key-here
+GOOGLE_AI_MODEL=gemini-2.5-flash-preview-04-17
 
-# Agent Framework (crewai, langchain, agno)
+# Agent (mock works without API keys)
 AGENT_FRAMEWORK=crewai
 AGENT_MOCK_MODE=True
+OPENAI_API_KEY=sk-...            # only needed when AGENT_MOCK_MODE=False
 
-# OpenAI API (optional)
-OPENAI_API_KEY=your-openai-key-here
+# Optional
+REDIS_URL=redis://localhost:6379/0
+SUPABASE_URL=https://xxx.supabase.co
+SUPABASE_ANON_KEY=...
 ```
 
-## Development
+---
 
-### Backend Development
-```bash
-cd backend
-pip install -r requirements.txt
-uvicorn main:app --reload --host 0.0.0.0 --port 8000
-```
+## API (optional)
 
-### Frontend Development
+Start the server with `python cli.py serve` and open `http://localhost:8000/docs`.
+
+Key endpoints: `POST /auth/signup` · `POST /auth/login` · `POST /agent/query` · `POST /workflow/content-plans/generate` · `POST /workflow/content-posts/generate`
+
+---
+
+## Frontend (optional)
+
+An Astro 4 + Tailwind web UI is included but not required. To run it:
+
 ```bash
 cd frontend
-npm install
-npm run dev
+pnpm install
+pnpm dev        # http://localhost:4321
 ```
 
-Optional landing-page waitlist embed:
-- Set `PUBLIC_TALLY_FORM_URL=https://tally.so/r/<your-form-id>` in `frontend/.env`.
+---
 
-### Testing
-```bash
-cd backend
-pytest test_main.py -v
+## Project structure
+
+```text
+backend/
+├── app/
+│   ├── gemini_service.py   ← prompt + ClearV logic
+│   ├── models/             ← SQLAlchemy models
+│   ├── routers/            ← FastAPI routes
+│   ├── schemas/            ← Pydantic schemas
+│   └── config.py           ← settings from .env
+├── cli.py                  ← all CLI commands
+├── main.py                 ← FastAPI entry point
+└── output/                 ← generated Markdown files
+frontend/                   ← Astro UI (optional)
 ```
 
-## Agent Frameworks
+---
 
-The application supports three agent frameworks:
+## Contributing
 
-1. **CrewAI** - Multi-agent orchestration
-2. **LangChain** - Comprehensive LLM toolkit
-3. **Agno** - Lightweight agent framework
+Open an issue before large changes. PRs welcome.
 
-Switch between frameworks using the `AGENT_FRAMEWORK` environment variable.
-
-## Troubleshooting
-
-1. **Database Connection Issues**: Ensure PostgreSQL is running and connection string is correct
-2. **Import Errors**: Make sure you're in the correct directory when running commands
-3. **Port Conflicts**: Check if ports 8000 (backend) or 4321 (frontend) are already in use
-4. **Agent Errors**: Set `AGENT_MOCK_MODE=True` for testing without API keys
-
-## Install Skills (Reliable Method)
-
-If `npx skills add ...` times out for large repositories, use the local helper:
-
-```bash
-powershell -ExecutionPolicy Bypass -File scripts/install-skill.ps1 -Skill frontend-design
-```
-
-Options:
-- `-Repo` (default: `anthropics/skills`)
-- `-Experimental` (install from `skills/.experimental/<name>`)
-- `-DryRun` (print command without installing)
+**[ravah.app](https://ravah.app)**
