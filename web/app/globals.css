@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --petal-frost: #ffd6ff;
+  --mauve:       #e7c6ff;
+  --mauve-2:     #c8b6ff;
+  --periwinkle:  #b8c0ff;
+  --peri-2:      #bbd0ff;
+
+  --bg:          #09080f;
+  --card:        #0f0d1a;
+  --surface:     #130f20;
+  --active:      #1a1535;
+  --border-dim:  #1e1a30;
+  --border-mid:  #2a2450;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  background: var(--bg);
+  background-image:
+    radial-gradient(ellipse 90% 40% at 50% -10%, rgba(184, 192, 255, 0.06) 0%, transparent 100%);
+  color: var(--mauve);
+  min-height: 100vh;
+}
+
+/* ── Inputs & selects ───────────────────────────────────────────────────────── */
+
+input,
+textarea,
+select {
+  background: var(--surface);
+  border-color: var(--border-dim);
+  color: var(--mauve);
+  transition: border-color 0.15s;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--border-mid);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--periwinkle);
+}
+
+select option {
+  background: #1a1535;
+  color: var(--mauve);
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────────────────────── */
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-mid); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--periwinkle); }
+
+::selection {
+  background: rgba(200, 182, 255, 0.25);
+}

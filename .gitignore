@@ -67,6 +67,10 @@ pnpm-debug.log*
 .astro/
 dist/
 
+# Next.js
+web/.next/
+web/out/
+
 # Docker
 *.pid
 *.seed
