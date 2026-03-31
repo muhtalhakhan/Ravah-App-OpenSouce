@@ -5,7 +5,7 @@
 **Turn what you ship into a week of social content.**
 For founders who build in public.
 
-Open-source CLI
+Open-source CLI · [**Web app →**](https://ravah-app-open-source.vercel.app)
 
 ---
 
@@ -136,12 +136,12 @@ ravah
 
 ---
 
-## Frontend (optional)
+## Web app (optional)
 
-An Astro 4 + Tailwind UI is included. The CLI works without it.
+A Next.js web app is included and deployed at [ravah-app-open-source.vercel.app](https://ravah-app-open-source.vercel.app). The CLI works without it.
 
 ```bash
-cd frontend && pnpm install && pnpm dev    # http://localhost:4321
+cd web && npm install && npm run dev    # http://localhost:3000
 ```
 
 ---
